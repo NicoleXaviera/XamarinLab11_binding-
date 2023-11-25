@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoMVVC.Views.Sueldo"
+             xmlns:local="clr-namespace:DemoMVVC.ViewModels">
+    <ContentPage.BindingContext>
+        <local:SueldoViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry FontSize="Title" Text="{Binding Sueldo}" Placeholder="Sueldo Base"></Entry>
+            <Entry FontSize="Title" Text="{Binding Gratificacion}" Placeholder="Gratificacion"></Entry>
+
+            <Button FontSize="Title" Command="{Binding CalcularSueldoNeto}" Text="Calcular"></Button>
+            <Label FontSize="Title" Text="{Binding SueldoNeto}"></Label>
+
+
+            <Entry FontSize="Title" Text="{Binding Descuento}" Placeholder="Descuento"></Entry>
+
+            <Button FontSize="Title" Command="{Binding CalcularSueldoNetoFinal}" BackgroundColor="White" Text="Calcular Neto Final"></Button>
+            <Button FontSize="Title" Command="{Binding CalcularImpuesto}" BackgroundColor="White" Text="Calcular Impuesto"></Button>
+
+            <Label FontSize="Title" Text="{Binding Impuesto}"></Label>
+            <Label FontSize="Title" Text="{Binding SueldoNetoFinal}"></Label>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
