@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoMVVC.Views.Task"
+             xmlns:local="clr-namespace:DemoMVVC.ViewModels">
+    <ContentPage.BindingContext>
+        <local:TaskViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <Label Text="Título" />
+        <Entry Text="{Binding Title}" />
+
+        <Label Text="Descripción" />
+        <Entry Text="{Binding Description}" />
+
+        <Label Text="Estado" />
+        <Switch IsToggled="{Binding Status}" />
+
+        <Button Text="Guardar" Command="{Binding Save}" />
+        <Button Text="Listar" Command="{Binding Get}" />
+
+        <ListView ItemsSource="{Binding Tasks}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Title}" Detail="{Binding Description}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

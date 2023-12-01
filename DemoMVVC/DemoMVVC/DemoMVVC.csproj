@@ -17,12 +17,14 @@
 
   <ItemGroup>
     <Folder Include="Dependencias\" />
-    <Folder Include="Models\" />
     <Folder Include="Service conectados\" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="Views\Sueldo.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Task.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
