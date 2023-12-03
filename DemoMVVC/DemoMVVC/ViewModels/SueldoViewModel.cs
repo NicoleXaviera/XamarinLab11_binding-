@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace DemoMVVC.ViewModels
 {
-    public class SueldoViewModel : INotifyPropertyChanged
+    public class SueldoViewModel : ViewModelBase
     {
         private int sueldo;
         public int Sueldo
@@ -78,6 +78,20 @@ namespace DemoMVVC.ViewModels
             }
         }
 
+        double impuesto;
+        public double Impuesto
+        {
+            get { return impuesto; }
+            set
+            {
+                if (impuesto != value)
+                {
+                    impuesto = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public ICommand CalcularSueldoNeto { protected set; get; }
         public ICommand CalcularSueldoNetoFinal { protected set; get; }
         public ICommand CalcularImpuesto { protected set; get; }
@@ -96,15 +110,9 @@ namespace DemoMVVC.ViewModels
 
             CalcularImpuesto = new Command(() =>
             {
-                SueldoNetoFinal = (int)(SueldoNeto * 0.08); 
+                SueldoNetoFinal = (int)(SueldoNeto * 0.18); 
             });
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

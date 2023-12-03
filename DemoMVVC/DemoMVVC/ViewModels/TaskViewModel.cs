@@ -12,6 +12,8 @@ namespace DemoMVVC.ViewModels
     public class TaskViewModel : ViewModelBase
     {
         private ObservableCollection<Task> tasks;
+        private ObservableCollection<Task> displayedTasks;
+
         public ObservableCollection<Task> Tasks
         {
             get { return tasks; }
@@ -25,7 +27,21 @@ namespace DemoMVVC.ViewModels
             }
         }
 
+        public ObservableCollection<Task> DisplayedTasks
+        {
+            get { return displayedTasks; }
+            set
+            {
+                if (displayedTasks != value)
+                {
+                    displayedTasks = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private Task newTask;
+
         public Task NewTask
         {
             get { return newTask; }
@@ -44,8 +60,9 @@ namespace DemoMVVC.ViewModels
 
         public TaskViewModel()
         {
-            Tasks = new ObservableCollection<Task>();
-            NewTask = new Task();
+            tasks = new ObservableCollection<Task>();
+            displayedTasks = new ObservableCollection<Task>();
+            newTask = new Task();
 
             Save = new Command(Insertar);
             Get = new Command(Listar);
@@ -55,29 +72,14 @@ namespace DemoMVVC.ViewModels
         {
             if (NewTask != null)
             {
-                Tasks.Add(NewTask);
-                NewTask = new Task(); 
+                tasks.Add(NewTask);
+                newTask = new Task();
             }
         }
 
         private void Listar()
         {
-            Tasks = new ObservableCollection<Task>(Tasks);
-        }
-
-   
-        public void Insertar(Task task)
-        {
-            if (task != null)
-            {
-                Tasks.Add(task);
-            }
-        }
-
-       
-        public ObservableCollection<Task> Listar2()
-        {
-            return Tasks;
+            DisplayedTasks = new ObservableCollection<Task>(Tasks);
         }
     }
 }
